@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>स्वतंत्रता दिवस शुभकामनाएँ</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@500&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans Devanagari', sans-serif;
+      background: linear-gradient(to bottom, #ff9933 0%, #ffffff 50%, #138808 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      overflow-x: hidden;
+      position: relative;
+      flex-direction: column;
+    }
+
+    .container {
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      width: 90%;
+      max-width: 500px;
+      animation: fadeIn 1s ease;
+      margin-bottom: 10px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    img {
+      width: 100%;
+      border-radius: 10px;
+      border: 3px solid #138808;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .wishes {
+      margin-top: 20px;
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #000080;
+      animation: typing 2s steps(30, end), blink 0.75s step-end infinite;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .flag-line {
+      font-size: 1rem;
+      color: #333;
+      margin: 15px 0;
+    }
+
+    input, button {
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #888;
+      width: 100%;
+      max-width: 300px;
+      margin-top: 10px;
+    }
+
+    button {
+      background-color: #138808;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      background-color: #0c6606;
+      transform: scale(1.05);
+    }
+
+    .share-btn {
+      background-color: #000080;
+    }
+
+    .share-btn:hover {
+      background-color: #000066;
+    }
+
+    .generated {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #d94f4f;
+      font-weight: bold;
+      white-space: pre-line;
+      animation: fadeIn 1s ease;
+    }
+
+    .ashoka {
+      font-size: 2.5rem;
+      margin-top: 20px;
+      color: #000080;
+      animation: spin 6s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Confetti */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      animation: confettiFall linear infinite;
+    }
+
+    @keyframes confettiFall {
+      0% { transform: translateY(-10vh) rotate(0); }
+      100% { transform: translateY(110vh) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_India.svg" alt="भारतीय ध्वज">
+    <div class="wishes">स्वतंत्रता दिवस की हर्दिक शुभकामनाएँ!</div>
+    <div class="flag-line">
+      आइए आज़ादी के नायकों को नमन करें और भारत की भावना को गर्व से अपनाएं।
+    </div>
+
+    <input type="text" id="nameInput" placeholder="अपना नाम दर्ज करें">
+    <button onclick="generateWish()">शुभकामना बनाएँ</button>
+    <button class="share-btn" onclick="shareWish()">शेयर करें</button>
+
+    <div class="generated" id="generatedMessage"></div>
+    <div class="ashoka">✳️</div>
+  </div>
+<div>
+<script type="text/javascript">
+	atOptions = {
+		'key' : '26e04047cf84f5537a044ff66ffbe9c6',
+		'format' : 'iframe',
+		'height' : 50,
+		'width' : 320,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/26e04047cf84f5537a044ff66ffbe9c6/invoke.js"></script>
+
+</div>
+
+  <script>
+    let finalWish = "";
+
+    function generateWish() {
+      const name = document.getElementById('nameInput').value.trim();
+      const output = document.getElementById('generatedMessage');
+      if (name) {
+        finalWish = `आपको स्वतंत्रता दिवस की हार्दिक शुभकामनाएँ!\n- ${name} की ओर से`;
+        output.textContent = finalWish;
+        launchConfetti();
+      } else {
+        output.textContent = "कृपया शुभकामना भेजने के लिए अपना नाम दर्ज करें।";
+        finalWish = "";
+      }
+    }
+
+    function shareWish() {
+      if (!finalWish) {
+        alert("कृपया पहले शुभकामना बनाएं।");
+        return;
+      }
+
+      const shareText = finalWish.replace(/\n/g, "%0A");
+
+      if (navigator.share) {
+        navigator.share({
+          title: 'स्वतंत्रता दिवस की शुभकामनाएँ',
+          text: finalWish,
+          url: window.location.href
+        }).catch(() => {
+          fallbackShare(shareText);
+        });
+      } else {
+        fallbackShare(shareText);
+      }
+    }
+
+    function fallbackShare(encodedText) {
+      const whatsappURL = `https://wa.me/?text=${encodedText}`;
+      window.open(whatsappURL, '_blank');
+    }
+
+    function launchConfetti() {
+      for (let i = 0; i < 30; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = `${Math.random() * 100}vw`;
+        confetti.style.animationDuration = `${2 + Math.random() * 3}s`;
+        confetti.style.backgroundColor = ['#ff9933', '#ffffff', '#138808'][Math.floor(Math.random() * 3)];
+        confetti.style.opacity = Math.random();
+        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 5000);
+      }
+    }
+  </script>
+</body>
+</html>
